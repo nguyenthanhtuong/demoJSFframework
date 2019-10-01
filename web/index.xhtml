@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:st="customInput/facelets"
+        >
+<!--     xmlns:h = "http://java.sun.com/jsf/html"   xmlns:f = "http://java.sun.com/jsf/core"    -->
+        
+    <h:head>
+        <title>demo JSF</title>
+<!--        <style type="text/css">
+            .fullpage{
+                color:pink;
+                font-family: Roboto;
+                font-size: 20pt;
+                background-color: gray;
+            }
+            a{
+                color: white;
+            }
+        </style>-->
+        <link rel="stylesheet" type="text/css" href="resources/css/demo.css" />
+        <h:outputStylesheet library="#{resource['resources/css/']}" name="demo.css"/> 
+        <h:outputStylesheet library = "resources/css/" name = "demo.css"  />
+
+    </h:head>
+    <h:body>
+        <div class="fullpage">
+        <center>
+            <strong>Validation</strong>
+        <h:form>
+            <h:outputLabel for="username">User Name: </h:outputLabel>
+            <h:inputText  id="username" value="#{user.name}" required="true" requiredMessage="Không được để trống username">
+                <f:validateLength minimum="3" maximum="6"/>
+            </h:inputText><br/>
+            <h:message for="username" style="color:red" />
+            <h:commandButton id="submit-button" value="Submit" action="response.xhtml" styleClass="c2"/>
+        </h:form>
+        <hr/>
+            <h:form>
+                <h3>Tự động tìm trang</h3>
+                <h:commandButton action="page2" value="page2" styleClass="c2"/>
+            </h:form>
+        <hr />
+        <h:form> 
+   <h3> Using Managed Bean</h3>  
+   <h:commandButton action = "#{dieuhuong.moveToPage1}" value = "Page1" styleClass="c2" /> </h:form> 
+        <hr/>
+        <h3> chọn trang</h3>  
+      <h:form>
+         <h:commandLink action = "#{dieuhuong.showPage}"
+            value="page1">
+            <f:param name="pageId" value="1"/>
+         </h:commandLink>
+              
+         <emsp/>
+         <h:commandLink action = "#{dieuhuong.showPage}"
+            value="page2">
+            <f:param name = "pageId" value = "2" />
+         </h:commandLink>
+              
+         <emsp/>
+         <h:commandLink action = "#{dieuhuong.showPage}"
+            value = "Home">
+            <f:param name = "pageId" value = "3" />
+         </h:commandLink>
+      </h:form>
+        <br/>
+      
+      
+      <hr />
+      <h2>"From Action" Navigation</h2>
+      <h:form>
+         <h:commandLink action = "#{dieuhuong.processPage1}" value = "page1" />
+              <emsp/>
+         <h:commandLink action = "#{dieuhuong.processPage2}"
+         value = "page2" />
+              
+      </h:form>
+      <br/>
+      
+      <hr />
+      <h2>Forward vs Redirection Navigation</h2>
+      <h:form>
+         <h3>Forward</h3>
+         <h:commandButton action = "page1" value = "page1" styleClass="c2"/>
+         <h3>Redirect</h3>
+         <h:commandButton action = "page2?faces-redirect=true"
+         value = "page2" styleClass="c2"/>
+      </h:form>
+      <hr/>
+      <h2>Các thẻ trong JSF</h2>
+        <h:form>
+  Name: <h:inputText value="#{formdemotag.name}" /> <br/>
+  Password: <h:inputSecret value="#{formdemotag.password}" /> <br/>
+  Gender: <h:selectOneRadio value = "#{formdemotag.gender}">
+               <f:selectItem itemValue = "male" itemLabel = "male" />
+              <f:selectItem itemValue = "female" itemLabel = "female" />
+           </h:selectOneRadio>     <br/>    
+  Favorites:   <h:selectManyCheckbox value = "#{formdemotag.favorites}"> 
+           <f:selectItem itemValue = "Design" itemLabel = "Design" /> 
+           <f:selectItem itemValue = "Coding" itemLabel = "Coding" /> 
+           <f:selectItem itemValue = "Music" itemLabel = "Music" /> 
+           <f:selectItem itemValue = "Food" itemLabel = "Food" /> 
+           <f:selectItem itemValue = "Sport" itemLabel = "Sport" /> 
+        </h:selectManyCheckbox><br/>
+          Skills: <h:selectManyListbox value = "#{formdemotag.skills}"> 
+           <f:selectItem itemValue = "Java" itemLabel = "Java" /> 
+           <f:selectItem itemValue = "SQL" itemLabel = "SQL" /> 
+           <f:selectItem itemValue = "AWS" itemLabel = "AWS" /> 
+           <f:selectItem itemValue = "C#" itemLabel = "C#" /> 
+           <f:selectItem itemValue = "Python" itemLabel = "Python" /> 
+      </h:selectManyListbox><br/>
+  Title: <h:selectOneMenu value = "#{formdemotag.title}"> 
+           <f:selectItem itemValue = "Dev" itemLabel = "Dev" /> 
+           <f:selectItem itemValue = "QA" itemLabel = "QA" /> 
+           <f:selectItem itemValue = "Tester" itemLabel = "Tester" /> 
+           <f:selectItem itemValue = "BA" itemLabel = "BA" /> 
+      </h:selectOneMenu><br/>
+  
+  
+  
+  <h:commandButton action="#{formdemotag.submit()}" value="Submit" styleClass="c2"/>
+  </h:form>
+      <hr/>
+    <h:form>
+        <st:customInput label="Username" value="đây là thẻ tự định nghĩa bỏi người dùng"></st:customInput>
+    </h:form>
+      
+      <hr/>
+        Cảm ơn mọi người đã chú ý lắng nghe
+        <br />
+<!--        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />-->
+        </center>
+        </div>
+    </h:body>
+</html>
+
